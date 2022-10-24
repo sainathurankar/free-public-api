@@ -17,7 +17,7 @@ export class TablePrimeNgComponent implements OnInit {
   customers: Customer[] = [];
   dataSource: ApiDetail[] = [];
   dataLoaded: boolean = false;
-  fakeDataSource: any = ['', '', '', '', '', '', '', '', '', '', ''];
+  fakeDataSource: any = ['', '', '', '', '', '', '', '', '', '', '', '', '', ''];
 
   first = 0;
 
