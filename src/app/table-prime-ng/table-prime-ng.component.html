@@ -1,1 +1,104 @@
-<p>table-prime-ng works!</p>
+<div *ngIf="dataLoaded" class="card">
+    <p-table #dt1 [value]="dataSource" [paginator]="true" [rows]="25" [showCurrentPageReport]="true" responsiveLayout="scroll"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[25,50]" [globalFilterFields]="['API','Description','Category']">
+        <ng-template pTemplate="caption">
+            <div class="flex">
+                <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+                <span class="p-input-icon-left ml-auto" style="float: right">
+                    <i class="pi pi-search"></i>
+                    <input pInputText type="text" (input)="filter(dt1, $event)"
+                        placeholder="Search for API, Category" />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="API">Name <p-sortIcon field="API"></p-sortIcon>
+                </th>
+                <th pSortableColumn="Description">Description <p-sortIcon field="Description"></p-sortIcon>
+                </th>
+                <th pSortableColumn="Auth">Auth <p-sortIcon field="Auth"></p-sortIcon>
+                </th>
+                <th pSortableColumn="HTTPS">HTTPS <p-sortIcon field="HTTPS">
+                    </p-sortIcon>
+                </th>
+                <th pSortableColumn="Cors">Cors <p-sortIcon field="Cors">
+                    </p-sortIcon>
+                </th>
+                <!-- <th pSortableColumn="Link">Link <p-sortIcon field="Link">
+                    </p-sortIcon>
+                </th> -->
+                <th pSortableColumn="Category">Category <p-sortIcon field="Category">
+                    </p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-data>
+            <tr>
+                <td><a target="_blank" href="{{data.Link}}">{{data.API}}</a></td>
+                <td>{{data.Description}}</td>
+                <td>{{data.Auth}}</td>
+                <td [style.color]="data.HTTPS === true? 'green': 'red'">{{data.HTTPS}}</td>
+                <td [style.color]="data.Cors === 'yes'? 'green': 'red'">{{data.Cors}}</td>
+                <!-- <td><a target="_blank" href="{{data.Link}}">Click Here</a></td> -->
+                <td>{{data.Category}}</td>
+            </tr>
+        </ng-template>
+        
+    </p-table>
+</div>
+
+<div *ngIf="!dataLoaded" class="card">
+    <p-table [value]="fakeDataSource" [rows]="10" >
+        <ng-template  pTemplate="header">
+            <tr>
+                <th pSortableColumn="API">Name <p-sortIcon field="API"></p-sortIcon>
+                </th>
+                <th pSortableColumn="Description">Description <p-sortIcon field="Description"></p-sortIcon>
+                </th>
+                <th pSortableColumn="Auth">Auth <p-sortIcon field="Auth"></p-sortIcon>
+                </th>
+                <th pSortableColumn="HTTPS">HTTPS <p-sortIcon field="HTTPS">
+                    </p-sortIcon>
+                </th>
+                <th pSortableColumn="Cors">Cors <p-sortIcon field="Cors">
+                    </p-sortIcon>
+                </th>
+                <!-- <th pSortableColumn="Link">Link <p-sortIcon field="Link">
+                    </p-sortIcon> -->
+                <!-- </th> -->
+                <th pSortableColumn="Category">Category <p-sortIcon field="Category">
+                    </p-sortIcon>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+            <tr>
+                <td>
+                    <p-skeleton></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton></p-skeleton>
+                </td>
+                <td>
+                    <p-skeleton></p-skeleton>
+                </td>
+                <!-- <td>
+                    <p-skeleton></p-skeleton>
+                </td> -->
+            </tr>
+        </ng-template>
+
+    </p-table>
+</div>
+
