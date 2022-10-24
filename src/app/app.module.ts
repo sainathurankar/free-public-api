@@ -13,6 +13,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { TablePrimeNgComponent } from './table-prime-ng/table-prime-ng.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
